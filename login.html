@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Acceso</title>
+		<meta charset="UTF-8"/>
+		<link href="./styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="header">
+			<div class="header-logo-container">
+				<a href="./home.html"><img class="primary-logo" src="./assets/logos/primary-logo2.svg" alt="20"/></a>
+			</div>
+			<div class="search-bar-container">
+				<input placeholder="Buscá una artesanía"/>
+				<button><a href="./items.html"><img src="./assets/icons/loupe.svg" alt="16"/></a></button>
+			</div>
+			<div class="header-buttons-container">
+				<a href="./login.html"><button class="btn btn-seccondary">Acceder</button></a>
+				<a href="./register.html"><button class="btn btn-primary">Registrarse</button></a>
+			</div>
+		</div>
+		<div>
+			<div class="form-container">
+				<span class="form-title">Accedé con tu email</span>
+				<input class="input" placeholder="Email"/>
+				<input class="input" placeholder="Contraseña" type="password"/>
+				<button class="btn btn-primary" onclick="showAlert()">Acceder</button>
+			</div>
+		</div>
+
+		<div id="alert" class="alert-background">
+			<div class="alert-container">
+				<h4 class="form-title">Accediste al sistema, ahora podés publicar</h4>
+				<hr>
+				<br>
+				<a href="./save-item.html"><button class="btn-primary">Publicar</button></a>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+
+		function showAlert() {
+			var alert = document.getElementById('alert');
+			alert.style.display = 'block';
+		}
+
+		function dismissAlert() {
+			var alert = document.getElementById('alert');
+			alert.style.display = 'none';
+		}
+
+	</script>
+</html>
