@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Talleres</title>
+		<meta charset="UTF-8"/>
+		<link href="./styles.css" rel="stylesheet">
+
+		<link rel="stylesheet" href="./assets/plugins/leaflet/leaflet.css"/>
+		<script src="./assets/plugins/leaflet/leaflet.js"></script>
+	</head>
+	<body onload="buildMap()">
+		<div class="header">
+			<div class="header-logo-container">
+				<a href="./home.html"><img class="primary-logo" src="./assets/logos/primary-logo2.svg" alt="20"/></a>
+			</div>
+			<div class="search-bar-container">
+				<input placeholder="Buscá una artesanía"/>
+				<button><a href="./items.html"><img src="./assets/icons/loupe.svg" alt="16"/></a></button>
+			</div>
+			<div class="header-buttons-container">
+				<a href="./login.html"><button class="btn btn-seccondary">Acceder</button></a>
+				<a href="./register.html"><button class="btn btn-primary">Registrarse</button></a>
+			</div>
+		</div>
+		<div>
+			<div class="workshops-container">
+				<div class="map-container">
+					<div id="map"></div>
+				</div>
+				<div class="workshops">
+					<!-- TALLER -->
+					<div class="workshop-item">
+						<h4>Taller A</h4>
+						<span>ID: 1234</span>
+						<br>
+						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
+						<br>
+						<span>Dirección: Calle 1465, Buenos Aires</span>
+						<br>
+						<span>Horario: de 09 a 18 hs</span>
+						<hr>
+					</div>
+					<!-- TALLER -->
+					<div class="workshop-item">
+						<h4>Taller A</h4>
+						<span>ID: 1234</span>
+						<br>
+						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
+						<br>
+						<span>Dirección: Calle 1465, Buenos Aires</span>
+						<br>
+						<span>Horario: de 09 a 18 hs</span>
+						<hr>
+					</div>
+					<!-- TALLER -->
+					<div class="workshop-item">
+						<h4>Taller A</h4>
+						<span>ID: 1234</span>
+						<br>
+						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
+						<br>
+						<span>Dirección: Calle 1465, Buenos Aires</span>
+						<br>
+						<span>Horario: de 09 a 18 hs</span>
+						<hr>
+					</div>
+					<!-- TALLER -->
+					<div class="workshop-item">
+						<h4>Taller A</h4>
+						<span>ID: 1234</span>
+						<br>
+						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
+						<br>
+						<span>Dirección: Calle 1465, Buenos Aires</span>
+						<br>
+						<span>Horario: de 09 a 18 hs</span>
+						<hr>
+					</div>
+					<!-- TALLER -->
+					<div class="workshop-item">
+						<h4>Taller A</h4>
+						<span>ID: 1234</span>
+						<br>
+						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
+						<br>
+						<span>Dirección: Calle 1465, Buenos Aires</span>
+						<br>
+						<span>Horario: de 09 a 18 hs</span>
+						<hr>
+					</div>
+					<!-- TALLER -->
+					<div class="workshop-item">
+						<h4>Taller A</h4>
+						<span>ID: 1234</span>
+						<br>
+						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
+						<br>
+						<span>Dirección: Calle 1465, Buenos Aires</span>
+						<br>
+						<span>Horario: de 09 a 18 hs</span>
+						<hr>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</body>
+	<script type="text/javascript">
+
+		function buildMap() {
+			var map = L.map('map', {
+				center: [-34.5221554, -58.7000067],
+				zoom: 13
+			});
+
+			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+			}).addTo(map);
+		}
+
+	</script>
+</html>

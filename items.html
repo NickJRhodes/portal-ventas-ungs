@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Artesanías</title>
+		<meta charset="UTF-8"/>
+		<link href="./styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="header">
+			<div class="header-logo-container">
+				<a href="./home.html"><img class="primary-logo" src="./assets/logos/primary-logo2.svg" alt="20"/></a>
+			</div>
+			<div class="search-bar-container">
+				<input placeholder="Buscá una artesanía"/>
+				<button><a href="./items.html"><img src="./assets/icons/loupe.svg" alt="16"/></a></button>
+			</div>
+			<div class="header-buttons-container">
+				<a href="./login.html"><button class="btn btn-seccondary">Acceder</button></a>
+				<a href="./register.html"><button class="btn btn-primary">Registrarse</button></a>
+			</div>
+		</div>
+		<div>
+			<div id="item-list-container" class="item-list-container">
+				<!-- ITEM -->
+				<div class="item-container">
+					<div class="item-image">
+						<img src="./assets/images/art.jpg" alt="200"/>
+						<a>Ver detalles</a>
+					</div>
+					<div class="item-description">
+						<span class="type">Venta directa</span>
+						<span class="name">Artesanía original</span>
+						<span class="price">$800</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+
+		(function() {
+			createItems();
+		})();
+
+		function createItems() {
+			const array = [1,2,3,4,5,6,7,8];
+
+			let htmlConcatenation = '';
+
+			for(const i of array) {
+				const html = `<div class='item-container'><div class='item-image'><img src='./assets/images/art${i}.jpg' alt='200'/><a>Ver detalles</a></div><div class='item-description'>
+						<span class="type">Venta directa</span>
+						<span class="name">Artesanía original</span>
+						<span class="price">$800</span></div></div>`;
+
+				htmlConcatenation = htmlConcatenation + html;
+			}
+
+			document.getElementById('item-list-container').innerHTML = htmlConcatenation;
+		}
+
+	</script>
+</html>
