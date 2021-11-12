@@ -172,15 +172,29 @@ textarea {
 
 .item-list-container {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
 	margin-top: 130px;
 	margin-bottom: 50px;
-	padding-left: 250px;
-	padding-right: 250px;
 	width: 100%;
 	height: 100%;
 	box-sizing: border-box;
-	gap: 25px;
+}
+
+@media (max-width: 1250px) {
+	.item-list-container {
+		padding-left: 50px;
+		padding-right: 50px;
+		gap: 15px;
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (min-width: 1250px) {
+	.item-list-container {
+		padding-left: 250px;
+		padding-right: 250px;
+		gap: 25px;
+		grid-template-columns: repeat(4, 1fr);
+	}
 }
 
 .item-container {
@@ -263,14 +277,27 @@ textarea {
 
 .workshops-container {
 	margin-top: 130px;
-	padding-left: 250px;
-	padding-right: 250px;
 	width: 100%;
 	height: 100%;
 	box-sizing: border-box;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	column-gap: 100px;
+}
+
+@media (max-width: 1250px) {
+	.workshops-container {
+		padding-left: 50px;
+		padding-right: 50px;
+		column-gap: 20px;
+	}
+}
+
+@media (min-width: 1250px) {
+	.workshops-container {
+		padding-left: 250px;
+		padding-right: 250px;
+		column-gap: 100px;
+	}
 }
 
 .map-container {
@@ -294,6 +321,7 @@ textarea {
 	border-radius: 12px;
 	padding: 16px;
 	overflow-y: scroll;
+	box-sizing: border-box;
 }
 
 .workshops::-webkit-scrollbar {
@@ -369,6 +397,18 @@ textarea {
 	animation: 0.6s ease-out 0s 1 bannerAnimation;
 }
 
+@media (max-width: 1250px) {
+	.banner-content {
+		margin-left: 200px;
+	}
+}
+
+@media (min-width: 1250px) {
+	.banner-content {
+		margin-left: 400px;
+	}
+}
+
 .banner-content h4 {
 	font-size: 46px;
     color: white;
@@ -425,7 +465,7 @@ textarea {
 	column-gap: 20px;
 }
 
-.save-item-form {
+.double-form {
 	max-width: 800px;
 }
 
