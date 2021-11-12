@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Nueva publicación</title>
+		<title>Nuevo taller</title>
 		<meta charset="UTF-8"/>
 		<link href="./styles.css" rel="stylesheet">
 	</head>
@@ -24,7 +24,7 @@
 				<span class="form-title">Nueva publicación</span>
 				<div class="columns-2">
 					<div id="item-details" class="item-details">
-						<label>Nombre del producto<input class="input" onchange="findAveragePrice(this)"/></label>
+						<label>Nombre<input class="input"/></label>
 						<label>Descripción<textarea class="input" rows="3"></textarea></label>
 						<label>Categoría
 							<select class="input">
@@ -33,25 +33,28 @@
 								<option>Categoría C</option>
 							</select>
 						</label>
-						<label>Tipo de publicación
-							<select class="input" onchange="handlePublicationTypeChange(this.value)">
-								<option value="v">Venta directa</option>
-								<option value="m">Muestra</option>
+						<label>Actividades ofrecidas
+							<select class="input">
+								<option>Artesanías</option>
+								<option>Pinturas</option>
+								<option>Otras</option>
 							</select>
 						</label>
+						<label>Horario<input class="input"/></label>
+						<label>Dirección<input class="input" onchange="findNormalizedAddress(this)"/></label>
 					</div>
 					<div id="item-image-upload" class="item-image-upload">
-						<label class="btn btn-seccondary">Subir imagen<input class="not-visible" type="file" onchange="handleImageFile(this)"/></label>
+						<label class="btn btn-seccondary">Subir imagen del taller<input class="not-visible" type="file" onchange="handleImageFile(this)"/></label>
 					</div>
 				</div>
-				<h4 id="average-price"></h4>
-				<button class="btn btn-primary" onclick="showAlert()">Publicar</button>
+				<h4 id="normalized-address"></h4>
+				<button class="btn btn-primary" onclick="showAlert()">Enviar</button>
 			</div>
 		</div>
 
 		<div id="alert" class="alert-background">
 			<div class="alert-container">
-				<h4 class="form-title">¡Felicitaciones! Tu publicación se creó correctamente</h4>
+				<h4 class="form-title">¡Se envió la solicitud de alta de tu taller!</h4>
 				<hr>
 				<br>
 				<a href="./home.html"><button class="btn-primary">Entendido</button></a>
@@ -61,56 +64,23 @@
 	</body>
 	<script type="text/javascript">
 
-		const priceInput = `<label id="price">Precio<input class="input"/></label>`;
-		const addingInfoInput = `<label id="info">Aclaración extra<input class="input"/></label>`;
-
-		(function() {
-			handlePublicationTypeChange('v');
-		})();
-
-		function findAveragePrice(input) {
+		function findNormalizedAddress(input) {
 			let xmlHttpRequest = new XMLHttpRequest();
-			xmlHttpRequest.open('GET', `https://api.mercadolibre.com/sites/MLA/search?q=${input.value}`);
+			xmlHttpRequest.open('GET', `http://servicios.usig.buenosaires.gob.ar/normalizar/?direccion=${input.value}&maxOptions=1`);
 			xmlHttpRequest.send();
 			xmlHttpRequest.onreadystatechange = function() {
+
 				if (this.status === 200 && this.readyState === 4) {
      				const responseBody = JSON.parse(this.response);
-					if(responseBody.results) {
-						let averagePrice = null;
-						let numberOfResults = responseBody.results.length;
-						let totalPrices = 0;
-					
-						responseBody.results.forEach(item => {
-							totalPrices = totalPrices + item.price;
-						});
+					if(responseBody) {
+						let normalizedAddress = responseBody.direccionesNormalizadas[0]?.direccion;
 
-						averagePrice = totalPrices / numberOfResults;
-
-						document.getElementById('average-price').innerHTML = `Precio promedio: $${averagePrice.toFixed(2)}`;
+						document.getElementById('normalized-address').innerHTML = `Dirección normalizada: ${normalizedAddress ? normalizedAddress : 'No encontrada'}`;
 					}
     			} else {
-					document.getElementById('average-price').innerHTML = `Precio promedio: -`;
+					document.getElementById('normalized-address').innerHTML = `Dirección normalizada: -`;
 				}
 			};
-		}
-
-		function handlePublicationTypeChange(value) {
-			document.getElementById('price')?.remove();
-			document.getElementById('info')?.remove();
-
-			let auxDiv = document.createElement('div');
-			switch (value) {
-				case 'v': {
-					auxDiv.innerHTML = priceInput;
-					document.getElementById('item-details').appendChild(auxDiv.firstChild);
-					break;
-				}
-				case 'm': {
-					auxDiv.innerHTML = addingInfoInput;
-					document.getElementById('item-details').appendChild(auxDiv.firstChild);
-					break;
-				}
-			}
 		}
 
 		function handleImageFile(event) {

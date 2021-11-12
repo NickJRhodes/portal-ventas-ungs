@@ -48,10 +48,17 @@
 			let htmlConcatenation = '';
 
 			for(const i of array) {
-				const html = `<div class='item-container'><div class='item-image'><img src='./assets/images/art${i}.jpg' alt='200'/><a>Ver detalles</a></div><div class='item-description'>
-						<span class="type">Venta directa</span>
-						<span class="name">Artesanía original</span>
-						<span class="price">$800</span></div></div>`;
+				const html = `
+					<div class='item-container'>
+						<div class='item-image'>
+							<img src='./assets/images/art${i}.jpg' alt='200'/><a>Ver detalles</a>
+						</div>
+						<div class='item-description'>
+							<span class="type">Venta directa</span>
+							<span class="name">Artesanía original</span>
+							<span class="price">$800</span>
+						</div>
+					</div>`;
 
 				htmlConcatenation = htmlConcatenation + html;
 			}
