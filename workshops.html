@@ -4,14 +4,15 @@
 		<title>Talleres</title>
 		<meta charset="UTF-8"/>
 		<link href="./styles.css" rel="stylesheet">
+		<script src="./assets/data-source/workshops.js"></script>
 
 		<link rel="stylesheet" href="./assets/plugins/leaflet/leaflet.css"/>
 		<script src="./assets/plugins/leaflet/leaflet.js"></script>
 	</head>
-	<body onload="buildMap()">
+	<body>
 		<div class="header">
 			<div class="header-logo-container">
-				<a href="./home.html"><img class="primary-logo" src="./assets/logos/primary-logo2.svg" alt="20"/></a>
+				<a href="./home.html"><img class="primary-logo" src="./assets/logos/primary-logo.svg" alt="20"/></a>
 			</div>
 			<div class="search-bar-container">
 				<input placeholder="Buscá una artesanía"/>
@@ -27,80 +28,7 @@
 				<div class="map-container">
 					<div id="map"></div>
 				</div>
-				<div class="workshops">
-					<!-- TALLER -->
-					<div class="workshop-item">
-						<h4>Taller A</h4>
-						<span>ID: 1234</span>
-						<br>
-						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
-						<br>
-						<span>Dirección: Calle 1465, Buenos Aires</span>
-						<br>
-						<span>Horario: de 09 a 18 hs</span>
-						<hr>
-					</div>
-					<!-- TALLER -->
-					<div class="workshop-item">
-						<h4>Taller A</h4>
-						<span>ID: 1234</span>
-						<br>
-						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
-						<br>
-						<span>Dirección: Calle 1465, Buenos Aires</span>
-						<br>
-						<span>Horario: de 09 a 18 hs</span>
-						<hr>
-					</div>
-					<!-- TALLER -->
-					<div class="workshop-item">
-						<h4>Taller A</h4>
-						<span>ID: 1234</span>
-						<br>
-						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
-						<br>
-						<span>Dirección: Calle 1465, Buenos Aires</span>
-						<br>
-						<span>Horario: de 09 a 18 hs</span>
-						<hr>
-					</div>
-					<!-- TALLER -->
-					<div class="workshop-item">
-						<h4>Taller A</h4>
-						<span>ID: 1234</span>
-						<br>
-						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
-						<br>
-						<span>Dirección: Calle 1465, Buenos Aires</span>
-						<br>
-						<span>Horario: de 09 a 18 hs</span>
-						<hr>
-					</div>
-					<!-- TALLER -->
-					<div class="workshop-item">
-						<h4>Taller A</h4>
-						<span>ID: 1234</span>
-						<br>
-						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
-						<br>
-						<span>Dirección: Calle 1465, Buenos Aires</span>
-						<br>
-						<span>Horario: de 09 a 18 hs</span>
-						<hr>
-					</div>
-					<!-- TALLER -->
-					<div class="workshop-item">
-						<h4>Taller A</h4>
-						<span>ID: 1234</span>
-						<br>
-						<span>Descripcion: daoigfjbasld asdogfkn asdg opjansdgfpladf lbasdf p</span>
-						<br>
-						<span>Dirección: Calle 1465, Buenos Aires</span>
-						<br>
-						<span>Horario: de 09 a 18 hs</span>
-						<hr>
-					</div>
-				</div>
+				<div id="workshops-list-container" class="workshops"></div>
 			</div>
 
 
@@ -108,15 +36,66 @@
 	</body>
 	<script type="text/javascript">
 
+		var map;
+
+		(function() {
+			buildMap();
+			buildWorkshopsList();
+		})();
+
+		function buildWorkshopsList() {
+			let htmlConcatenation = '';
+
+			//La variable workshops, proviene del archivo './assets/data-source/workshops.js'
+			for(const i of workshops) {
+				addMarkerToMap(i);
+				const html = `
+					<div class="workshop-item">
+						<div>
+							<h4>${i.name} - </h4>
+							<span class="location-link" onclick="flyToMapLocation(${i.latitude}, ${i.longitude})">Ver en el mapa</span>
+							<br>
+							<span>${i.description}</span>
+							<br>
+							<span class="location">${i.location}</span>
+							<br>
+							<span class="schedule">${i.schedule}</span>
+							<hr>
+						</div>
+						<div class="workshop-image">
+							<img src="${i.imageSource}"/>
+						</div>
+					</div>`;
+
+				htmlConcatenation = htmlConcatenation + html;
+			}
+
+			document.getElementById('workshops-list-container').innerHTML = htmlConcatenation;
+		}
+
 		function buildMap() {
-			var map = L.map('map', {
-				center: [-34.5221554, -58.7000067],
+			map = L.map('map', {
+				center: [-34.539990506292895, -58.716736119884274],
 				zoom: 13
 			});
 
 			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(map);
+		}
+
+		function addMarkerToMap(workshop) {
+			let marker = L.marker([workshop.latitude, workshop.longitude]).addTo(map);
+			marker.bindPopup(`
+				<h4>${workshop.name}</h4>
+				<span>${workshop.location}</span>
+				<br>
+				<span>${workshop.schedule}</span>
+			`);
+		}
+
+		function flyToMapLocation(latitude, longitude) {
+			map.setView([latitude, longitude], 20);
 		}
 
 	</script>
