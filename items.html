@@ -4,11 +4,12 @@
 		<title>Artesanías</title>
 		<meta charset="UTF-8"/>
 		<link href="./styles.css" rel="stylesheet">
+		<script src="./assets/data-source/items.js"></script>
 	</head>
 	<body>
 		<div class="header">
 			<div class="header-logo-container">
-				<a href="./home.html"><img class="primary-logo" src="./assets/logos/primary-logo2.svg" alt="20"/></a>
+				<a href="./home.html"><img class="primary-logo" src="./assets/logos/primary-logo.svg" alt="20"/></a>
 			</div>
 			<div class="search-bar-container">
 				<input placeholder="Buscá una artesanía"/>
@@ -20,43 +21,30 @@
 			</div>
 		</div>
 		<div>
-			<div id="item-list-container" class="item-list-container">
-				<!-- ITEM -->
-				<div class="item-container">
-					<div class="item-image">
-						<img src="./assets/images/art.jpg" alt="200"/>
-						<a>Ver detalles</a>
-					</div>
-					<div class="item-description">
-						<span class="type">Venta directa</span>
-						<span class="name">Artesanía original</span>
-						<span class="price">$800</span>
-					</div>
-				</div>
-			</div>
+			<div id="item-list-container" class="item-list-container"></div>
 		</div>
 	</body>
 	<script type="text/javascript">
 
+
 		(function() {
-			createItems();
+			buildItemsList();
 		})();
 
-		function createItems() {
-			const array = [1,2,3,4,5,6,7,8];
-
+		function buildItemsList() {
 			let htmlConcatenation = '';
 
-			for(const i of array) {
+			//La variable items, proviene del archivo './assets/data-source/items.js'
+			for(const i of items) {
 				const html = `
 					<div class='item-container'>
 						<div class='item-image'>
-							<img src='./assets/images/art${i}.jpg' alt='200'/><a>Ver detalles</a>
+							<img src='${i.imageSrc}' alt='200'/><a>Ver detalles</a>
 						</div>
 						<div class='item-description'>
-							<span class="type">Venta directa</span>
-							<span class="name">Artesanía original</span>
-							<span class="price">$800</span>
+							<span class="type">${i.publicationType}</span>
+							<span class="name">${i.name}</span>
+							<span class="price">${i.price}</span>
 						</div>
 					</div>`;
 

@@ -8,7 +8,7 @@
 	<body>
 		<div class="header">
 			<div class="header-logo-container">
-				<a href="./home.html"><img class="primary-logo" src="./assets/logos/primary-logo2.svg" alt="20"/></a>
+				<a href="./home.html"><img class="primary-logo" src="./assets/logos/primary-logo.svg" alt="20"/></a>
 			</div>
 			<div class="search-bar-container">
 				<input placeholder="Buscá una artesanía"/>
@@ -75,10 +75,10 @@
 					if(responseBody) {
 						let normalizedAddress = responseBody.direccionesNormalizadas[0]?.direccion;
 
-						document.getElementById('normalized-address').innerHTML = `Dirección normalizada: ${normalizedAddress ? normalizedAddress : 'No encontrada'}`;
+						document.getElementById('normalized-address').innerHTML = `${normalizedAddress ? `Dirección elegida: ${normalizedAddress}` : 'No encontramos tu dirección :('}`;
 					}
     			} else {
-					document.getElementById('normalized-address').innerHTML = `Dirección normalizada: -`;
+					document.getElementById('normalized-address').innerHTML = `No encontramos tu dirección :(`;
 				}
 			};
 		}

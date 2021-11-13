@@ -170,6 +170,16 @@ textarea {
 	margin: auto;
 }
 
+.btn-gray {
+	color: white;
+	background-color: gray;
+	border: none;
+	border-radius: 20px;
+	font-size: 14px;
+	padding: 10px 20px;
+	margin: auto;
+}
+
 .item-list-container {
 	display: grid;
 	margin-top: 130px;
@@ -335,6 +345,34 @@ textarea {
 
 .workshop-item {
 	text-align: left;
+	display: grid;
+	grid-template-columns: auto min-content;
+}
+
+.workshop-item h4 {
+	display: inline-block;
+}
+
+.location-link {
+	text-decoration: underline;
+	color: blue;
+}
+
+.location-link:hover {
+	cursor: pointer;
+}
+
+.workshop-image {
+	width: 120px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.workshop-image img {
+	width: 100%;
+	object-fit: cover;
+	max-height: 100%;
 }
 
 #alert {
@@ -497,4 +535,16 @@ textarea {
 
 .not-visible {
 	display: none;
+}
+
+.location {
+	color: #999;
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.schedule {
+	color: #999;
+	font-size: 14px;
+	font-weight: 480;
 }
